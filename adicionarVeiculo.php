@@ -1,60 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <title>Registo de Veículo</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
 
-    body {
-      background: #f4f6fc;
-      color: #333;
-    }
-
-    .container {
-      display: flex;
-      height: 100vh;
-    }
-
-    /* Menu lateral */
-    .sidebar {
-      width: 240px;
-      background: #0044ff;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding: 20px;
-    }
-
-    .logo {
-      width: 10vh;
-      margin: 0 auto 20px auto;
-    }
-
-    .sidebar nav a {
-      color: white;
-      text-decoration: none;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .sidebar nav a:hover,
-    .sidebar nav a.active {
-      background: #002db3;
-    }
-
-    /* Conteúdo principal */
     .main-content {
       flex: 1;
       padding: 30px;
@@ -80,7 +33,8 @@
       border-radius: 12px;
     }
 
-    input[type="text"], input[type="number"] {
+    input[type="text"],
+    input[type="number"] {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
@@ -101,20 +55,39 @@
     button:hover {
       background-color: #002db3;
     }
-  </style>
+    .btn-secundario {
+  background: #e0e0e0;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.btn-secundario:hover {
+  background: #d0d0d0;
+  color: #000;
+}
+
+</style>
 </head>
+
 <body>
   <div class="container">
     <!-- MENU LATERAL -->
     <aside class="sidebar">
       <img src="logo.png" class="logo">
       <nav class="content">
-        <a href="Menu.php"><i class="fa fa-chart-bar"></i> Dashboard    </a>
+        <a href="Menu.php"><i class="fa fa-chart-bar"></i> Dashboard </a>
         <a href="parqueamento.php"><i class="fa fa-list"></i> Parqueamento</a>
         <a href="adicionarVeiculo.php" class="active"><i class="fa fa-car"></i> Veículos</a>
-        <a href="proprietarios.html"><i class="fa fa-user"></i> Proprietários</a>
-     
+        <a href="proprietario.php"><i class="fa fa-user"></i> Proprietários</a>
       </nav>
+      <div class="footer">
+        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Sair</a>
+      </div>
     </aside>
 
     <!-- CONTEÚDO PRINCIPAL -->
@@ -125,42 +98,45 @@
           <img src="user.jpg" alt="Utilizador">
         </div>
       </header>
-
+        <div style="text-align: right; margin-top: 15px;">
+          <a href="listarVeiculo.php" class="btn-secundario"><i class="fa fa-list"></i> Ver Lista</a>
+        </div>
       <section class="content-box">
-  <form action="inserirVeiculo.php" method="POST">
-    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <form action="inserirVeiculo.php" method="POST">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
 
-      <div>
-        <label for="matricula"><strong>Matrícula:</strong></label><br>
-        <input type="text" id="matricula" name="matricula" placeholder="ABC-123-MZ" required>
-      </div>
+            <div>
+              <label for="matricula"><strong>Matrícula:</strong></label><br>
+              <input type="text" id="matricula" name="matricula" placeholder="ABC-123-MZ" required>
+            </div>
 
-      <div>
-        <label for="marca"><strong>Marca:</strong></label><br>
-        <input type="text" id="marca" name="marca" placeholder="Toyota Corolla..." required>
-      </div>
+            <div>
+              <label for="marca"><strong>Marca:</strong></label><br>
+              <input type="text" id="marca" name="marca" placeholder="Toyota Corolla..." required>
+            </div>
 
-      <div>
-        <label for="ano"><strong>Ano de Fabrico:</strong></label><br>
-        <input type="number" id="ano" name="ano" placeholder="Ex: 2015" min="1900" max="2099" required>
-      </div>
+            <div>
+              <label for="ano"><strong>Ano de Fabrico:</strong></label><br>
+              <input type="number" id="ano" name="ano" placeholder="Ex: 2015" min="1900" max="2099" required>
+            </div>
 
-      <div>
-        <label><strong>Tipo:</strong></label><br>
-        <label style="margin-right: 15px;">
-          <input type="radio" name="tipo" value="Ligeiro" required> Ligeiro
-        </label>
-        <label>
-          <input type="radio" name="tipo" value="Pesado" required> Pesado
-        </label>
-      </div>
+            <div>
+              <label><strong>Tipo:</strong></label><br>
+              <label style="margin-right: 15px;">
+                <input type="radio" name="tipo" value="Ligeiro" required> Ligeiro
+              </label>
+              <label>
+                <input type="radio" name="tipo" value="Pesado" required> Pesado
+              </label>
+            </div>
 
-      <button type="submit" name="submeter">Registar Veículo</button>
-    </div>
-  </form>
-</section>
+            <button type="submit" name="submeter">Registar Veículo</button>
+          </div>
+        </form>
+      </section>
 
     </main>
   </div>
 </body>
+
 </html>
