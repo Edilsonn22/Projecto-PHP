@@ -106,12 +106,15 @@ $dados = $result->fetch_assoc();
         <!-- MENU LATERAL -->
         <aside class="sidebar">
             <img src="logo.png" class="logo">
-            <nav class="content">
-                <a href="Menu.php" class="active"><i class="fa fa-chart-bar"></i> Dashboard</a>
-                <a href="parqueamento.php"><i class="fa fa-list"></i> Parqueamento</a>
-                <a href="adicionarVeiculo.php"><i class="fa fa-car"></i> Veículos</a>
-                <a href="proprietario.php"><i class="fa fa-user"></i> Proprietários</a>
-            </nav>
+      <nav class="content">
+        <a href="Menu.php"><i class="fa fa-chart-bar"></i> Dashboard</a>
+        <a href="parqueamento.php" class="active"><i class="fa fa-list"></i> Parqueamento</a>
+        <a href="adicionarVeiculo.php"><i class="fa fa-car"></i> Veículos</a>
+        <a href="proprietario.php"><i class="fa fa-user"></i> Proprietários</a>
+      </nav>
+            <div class="footer">
+                <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Sair</a>
+            </div>
         </aside>
         <main class="main-content">
             <header>

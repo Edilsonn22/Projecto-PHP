@@ -111,6 +111,9 @@ $resultado = $conexao->query($sql);
       <a href="proprietarios.html"><i class="fa fa-user"></i> Proprietários</a>
       <a href="registos.html"><i class="fa fa-list"></i> Registos</a>
     </nav>
+    <div class="footer">
+      <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Sair</a>
+    </div>
   </aside>
 
   <!-- CONTEÚDO PRINCIPAL -->

@@ -96,13 +96,10 @@
   <div class="container">
 
     <form action="logarUsuario.php" method="post" class="login">
-    <img src="LogoSistema.png" alt="logo">
       <h1>Login</h1>
       <input type="text" name="user" id="user" placeholder="Nome de utilizador" required />
       <input type="password" name="password" id="password" placeholder="Palavra-passe" onblur="validarSenha()" required />
       <button type="submit" id="enviar" value="Enviar">Entrar</button>
-      <a href="criarConta.php">Criar nova conta</a>
-      
       <?php session_start(); ?>
 
         <?php if (isset($_SESSION['erro_login'])): ?>

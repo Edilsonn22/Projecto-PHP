@@ -1,3 +1,36 @@
+<?php
+session_start();
+
+// Conexão
+$host = "localhost";
+$user = "root";
+$pass = "869444368";
+$dbname = "sistema_registo_veiculos";
+$port = 3306;
+
+$con = new mysqli($host, $user, $pass, $dbname, $port);
+if ($con->connect_error) {
+    die("Erro de conexão: " . $con->connect_error);
+}
+
+// Validar se foi passado o código
+if (!isset($_GET['id'])) {
+    echo "ID não fornecido.";
+    exit();
+}
+
+$id = (int) $_GET['id'];
+
+// Buscar viatura
+$sql = "SELECT * FROM veiculos WHERE codigo_veiculo = $id";
+$resultado = $con->query($sql);
+if ($resultado->num_rows === 0) {
+    echo "Viatura não encontrada.";
+    exit();
+}
+$veiculo = $resultado->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -93,7 +126,7 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="main-content">
       <header>
-        <h1>Registar Novo Veículo</h1>
+        <h1>Editar Veículo</h1>
         <div class="user">
           <img src="user.jpg" alt="Utilizador">
         </div>
@@ -102,35 +135,36 @@
           <a href="listarVeiculo.php" class="btn-secundario"><i class="fa fa-list"></i> Ver Lista</a>
         </div>
       <section class="content-box">
-        <form action="inserirVeiculo.php" method="POST">
+        <form action="atualizar_viatura.php" method="POST">
           <div style="display: flex; flex-direction: column; gap: 20px;">
-
+          
+                  <input type="hidden" name="codigo_veiculo" value="<?= $veiculo['codigo_veiculo'] ?>">
             <div>
               <label for="matricula"><strong>Matrícula:</strong></label><br>
-              <input type="text" id="matricula" name="matricula" placeholder="ABC-123-MZ" required>
+              <input type="text" id="matricula" name="matricula"value="<?= htmlspecialchars($veiculo['matricula']) ?>"required>
             </div>
 
             <div>
               <label for="marca"><strong>Marca:</strong></label><br>
-              <input type="text" id="marca" name="marca" placeholder="Toyota Corolla..." required>
+              <input type="text" id="marca" name="marca" value="<?= htmlspecialchars($veiculo['marca']) ?>" required>
             </div>
 
             <div>
               <label for="ano"><strong>Ano de Fabrico:</strong></label><br>
-              <input type="number" id="ano" name="ano" placeholder="Ex: 2015" min="1900" max="2099" required>
+              <input type="number" id="ano" name="ano" placeholder="Ex: 2015" value="<?= htmlspecialchars($veiculo['ano_fabrico']) ?>" required>
             </div>
 
             <div>
               <label><strong>Tipo:</strong></label><br>
               <label style="margin-right: 15px;">
-                <input type="radio" name="tipo" value="Ligeiro" required> Ligeiro
+                <input type="radio" name="tipo" value="Ligeiro" <?= $veiculo['tipo'] == "Ligeiro" ? 'checked' : '' ?> required> Ligeiro
               </label>
               <label>
-                <input type="radio" name="tipo" value="Pesado" required> Pesado
+                <input type="radio" name="tipo"  value="Pesado" <?= $veiculo['tipo'] == "Pesado" ? 'checked' : '' ?> required> Pesado
               </label>
             </div>
+                <button type="submit" name="submeter">Atualizar Veículo</button>
 
-            <button type="submit" name="submeter">Registar Veículo</button>
           </div>
         </form>
       </section>
